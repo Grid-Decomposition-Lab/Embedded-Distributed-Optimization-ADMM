@@ -13,18 +13,9 @@ The core of the solver is a **Nesterov-accelerated Alternating Direction Method 
 - **Accelerated Convergence**: Adopts Nesterov-type acceleration for both primal and dual updates.
 - **Real-time Feasibility**: Designed for resource-constrained hardware by exploiting matrix sparsity and pre-computing invariant operators to ensure deterministic execution times.
 
-## Key Results
-- **Fast Convergence**: The accelerated variant requires approximately 40% fewer iterations than standard ADMM to reach a numerical precision of $10^{-6}$.
-- **Economic Impact**: Case studies with 10 participants demonstrate a significant reduction (approx. 16.36%) in the overall community electricity bill through coordinated sharing incentives.
-
-## Project Structure
-- `src/`: MATLAB implementation of the accelerated ADMM solver and REC modeling.
-- `data/`: Profiles for PV generation, fixed loads, and price signals.
-- `docs/`: Mathematical derivations of the KKT-based QP reformulation.
-
 ## Numerical Observations and Discussion
-- On Convergence PerformanceObservation: In this specific REC scheduling model, the Fast ADMM variant did not demonstrate a significantly higher convergence speed compared to the classical ADMM.   Analysis: This is likely due to the model's scale and its strong convexity. For small-scale problems ($N=3, T=12$), the classical ADMM can reach high precision rapidly within the linear convergence region. Furthermore, the introduction of a quadratic penalty term ensures the objective function is strongly convex, which allows standard first-order methods to perform exceptionally well, thereby reducing the marginal gain of Nesterov acceleration.
-- On Residual Non-Zero LimitObservation: The primal and dual residuals reached a plateau and did not converge to absolute zero.   Analysis: This phenomenon may be attributed to the KKT-based reformulation， a topic reserved for future analysis using adaptive penalty methods.
+- **On Convergence Performance Observation**: In this specific REC scheduling model, the Fast ADMM variant did not demonstrate a significantly higher convergence speed compared to the classical ADMM.   Analysis: This is likely due to the model's scale and its strong convexity. For small-scale problems ($N=3, T=12$), the classical ADMM can reach high precision rapidly within the linear convergence region. Furthermore, the introduction of a quadratic penalty term ensures the objective function is strongly convex, which allows standard first-order methods to perform exceptionally well, thereby reducing the marginal gain of Nesterov acceleration.
+- **On Residual Non-Zero LimitObservation**: The primal and dual residuals reached a plateau and did not converge to absolute zero.   Analysis: This phenomenon may be attributed to the KKT-based reformulation, a topic reserved for future analysis using adaptive penalty methods.
 
 ## References
 [1] G. Ferro, S. Grammatico, L. Parodi, R. R. Baghbadorani, and M. Robba, "An embedded accelerated decentralized optimization algorithm with application to energy communities," Control Engineering Practice, vol. 172, p. 106920, Mar. 2026.  
